@@ -1,24 +1,26 @@
-function openEnvelope() {
-  document.querySelector(".envelope-wrapper").classList.add("open");
-}
-
-function nextPage(event) {
-  event.stopPropagation();
+function openLetter() {
   const p1 = document.getElementById("page1");
   const p2 = document.getElementById("page2");
 
-  // Simple transition
-  p1.style.transition = "0.5s";
-  p1.style.transform = "translateX(-100%)";
+  // Add a quick "flip" animation feel
+  document.querySelector(".top-flap").style.transform = "rotateX(180deg)";
+
   setTimeout(() => {
     p1.classList.remove("active");
     p2.classList.add("active");
-  }, 500);
+  }, 600);
+}
+
+function goToProposal() {
+  document.getElementById("page2").classList.remove("active");
+  document.getElementById("page3").classList.add("active");
 }
 
 function moveNo() {
   const btn = document.getElementById("noBtn");
-  // Calculate random position within screen bounds
+  // Change to absolute so it can fly anywhere on screen
+  btn.style.position = "fixed";
+
   const x = Math.random() * (window.innerWidth - btn.offsetWidth);
   const y = Math.random() * (window.innerHeight - btn.offsetHeight);
 
@@ -27,36 +29,22 @@ function moveNo() {
 }
 
 function celebrate() {
-  const yay = document.getElementById("yayText");
-  yay.style.display = "block";
+  document.getElementById("yayText").style.display = "block";
   document.getElementById("noBtn").style.display = "none";
 
-  // Confetti explosion
-  const duration = 5 * 1000;
+  const duration = 10 * 1000;
   const animationEnd = Date.now() + duration;
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-  function randomInRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
 
   const interval = setInterval(function () {
     const timeLeft = animationEnd - Date.now();
+    if (timeLeft <= 0) return clearInterval(interval);
 
-    if (timeLeft <= 0) {
-      return clearInterval(interval);
-    }
-
-    const particleCount = 50 * (timeLeft / duration);
     confetti({
-      ...defaults,
-      particleCount,
-      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-    });
-    confetti({
-      ...defaults,
-      particleCount,
-      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      particleCount: 40,
+      startVelocity: 30,
+      spread: 360,
+      origin: { x: Math.random(), y: Math.random() - 0.2 },
+      colors: ["#ff69b4", "#ff1493", "#ffffff"],
     });
   }, 250);
 }
