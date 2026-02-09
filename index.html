@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Shabu</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <!-- Page 1: The Envelope -->
+      <div id="page1" class="page active">
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+          <div class="envelope">
+            <div class="front"></div>
+            <div class="top"></div>
+            <div class="letter">
+              <p>Hi, Shabu</p>
+              <a href="https://youtu.be/AMuRRXCuy-4?si=8SUZmR-avv9LeXaZ" target="_blank">Listen to this 🎵</a>
+              <button class="next-btn" onclick="nextPage(event)">Next</button>
+            </div>
+            <div class="heart">❤️</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page 2: The Question -->
+      <div id="page2" class="page">
+        <div class="question-card">
+          <h1>I like you too much!!</h1>
+          <p>Will you be my Valentine?</p>
+          <div class="btns">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onmouseover="moveNo()">No</button>
+          </div>
+          <h2 id="yayText" style="display: none">Yayy! ❤️</h2>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
