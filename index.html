@@ -12,45 +12,44 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
   <body>
-    <div id="container">
-      <!-- Page 1: Beautiful Envelope -->
-      <div id="page1" class="page active">
-        <div class="envelope-wrapper" onclick="openEnvelope()">
-          <div class="envelope">
-            <div class="top-flap"></div>
-            <div class="body"></div>
-            <div class="letter">
-              <h2 class="letter-title">Hi, Shabu!</h2>
-              <p class="letter-text">
-                I made something special for you.
-                <br /><br />
-                <a
-                  href="https://your-song-link.com"
-                  target="_blank"
-                  class="song-link"
-                  >🎵 Click here to listen to our song</a
-                >
-              </p>
-              <button class="next-btn" onclick="nextPage(event)">Next →</button>
-            </div>
-            <div class="heart-seal">❤️</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Page 2: The Proposal -->
-      <div id="page2" class="page">
-        <div class="proposal-card">
-          <h1>I like you too much!!</h1>
-          <p>Will you be my Valentine?</p>
-          <div class="button-group">
-            <button id="yesBtn" onclick="celebrate()">Yes</button>
-            <button id="noBtn" onmouseover="moveNo()">No</button>
-          </div>
-          <h2 id="yayText">Yayy! ❤️ I knew you'd say yes!</h2>
+    <!-- PAGE 1: JUST THE ENVELOPE -->
+    <div id="page1" class="page active">
+      <div class="envelope-wrapper" onclick="openLetter()">
+        <div class="envelope">
+          <div class="top-flap"></div>
+          <div class="body"></div>
+          <div class="heart-seal">❤️</div>
         </div>
       </div>
     </div>
+
+    <!-- PAGE 2: THE LETTER CONTENT -->
+    <div id="page2" class="page">
+      <div class="letter-opened">
+        <h2 class="letter-title">Hi, Shabu!</h2>
+        <p class="letter-text">
+          I wanted to tell you something special... <br /><br />
+          <a href="https://youtu.be/xGPeNN9S0Fg?si=7kVZRK8SbCnKiCTh" target="_blank" class="song-link"
+            >🎵 Click here to listen to our song</a
+          >
+        </p>
+        <button class="next-btn" onclick="goToProposal()">Next →</button>
+      </div>
+    </div>
+
+    <!-- PAGE 3: THE PROPOSAL -->
+    <div id="page3" class="page">
+      <div class="proposal-card">
+        <h1>I like you too much!!</h1>
+        <p>Will you be my Valentine?</p>
+        <div class="button-container">
+          <button id="yesBtn" onclick="celebrate()">Yes</button>
+          <button id="noBtn" onmouseover="moveNo()">No</button>
+        </div>
+        <h2 id="yayText">Yayy! ❤️</h2>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
