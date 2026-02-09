@@ -2,12 +2,10 @@
   --pink: #ff85a1;
   --dark-pink: #ff4d6d;
   --bg-gradient: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-  --letter-bg: #fff9f9;
 }
 
 body {
   margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,22 +19,23 @@ body {
   display: none;
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  perspective: 1500px;
+  position: absolute;
 }
 
 .page.active {
   display: flex;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.8s forwards;
 }
 
-/* BIG ENVELOPE DESIGN */
+/* ENVELOPE STYLING */
 .envelope-wrapper {
-  position: relative;
-  width: 500px; /* Bigger size */
-  height: 350px;
   cursor: pointer;
+  width: 450px;
+  height: 300px;
+  position: relative;
 }
 
 .envelope {
@@ -44,21 +43,17 @@ body {
   width: 100%;
   height: 100%;
   background-color: var(--dark-pink);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .top-flap {
   position: absolute;
   top: 0;
-  width: 0;
-  height: 0;
-  border-left: 250px solid transparent;
-  border-right: 250px solid transparent;
-  border-top: 180px solid #ff4d6d;
-  transform-origin: top;
-  transition: transform 0.6s ease;
-  z-index: 4;
+  border-left: 225px solid transparent;
+  border-right: 225px solid transparent;
+  border-top: 160px solid #ff4d6d;
+  z-index: 2;
 }
 
 .body {
@@ -67,154 +62,112 @@ body {
   width: 100%;
   height: 100%;
   background: #ff758f;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
-  z-index: 3;
-  border-radius: 10px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 45%);
+  z-index: 1;
 }
 
 .heart-seal {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -50%);
   font-size: 60px;
-  z-index: 5;
-  transition: opacity 0.3s;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  z-index: 3;
 }
 
-/* COLORFUL LETTER */
-.letter {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: 90%;
-  background: var(--letter-bg);
-  padding: 40px;
-  box-sizing: border-box;
+/* LETTER PAGE */
+.letter-opened {
+  background: white;
+  width: 80%;
+  max-width: 500px;
+  padding: 50px;
+  border-radius: 15px;
   text-align: center;
-  border-radius: 5px;
-  z-index: 2;
-  transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  border: 2px dashed var(--pink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 3px dashed var(--pink);
 }
 
 .letter-title {
   font-family: "Dancing Script", cursive;
-  font-size: 42px;
+  font-size: 50px;
   color: var(--dark-pink);
-  margin-bottom: 20px;
-}
-
-.letter-text {
-  font-size: 20px;
-  line-height: 1.5;
-  color: #555;
 }
 
 .song-link {
-  display: inline-block;
-  margin-top: 15px;
   color: #0077cc;
-  text-decoration: none;
   font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
   border-bottom: 2px solid #0077cc;
 }
 
 .next-btn {
   margin-top: 30px;
-  padding: 12px 30px;
   background: var(--dark-pink);
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* OPENING EFFECT */
-.envelope-wrapper.open .top-flap {
-  transform: rotateX(180deg);
-}
-
-.envelope-wrapper.open .letter {
-  transform: translateX(-50%) translateY(-180px);
-  z-index: 6;
-}
-
-.envelope-wrapper.open .heart-seal {
-  opacity: 0;
-}
-
-/* PAGE 2 DESIGN */
-.proposal-card {
-  background: white;
-  padding: 60px;
+  padding: 15px 40px;
   border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* PROPOSAL PAGE */
+.proposal-card {
   text-align: center;
-  box-shadow: 0 15px 50px rgba(255, 77, 109, 0.3);
-  max-width: 80%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 60px;
+  border-radius: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .proposal-card h1 {
   font-family: "Dancing Script", cursive;
-  font-size: 55px;
+  font-size: 60px;
   color: var(--dark-pink);
 }
 
-.proposal-card p {
-  font-size: 24px;
-  margin-bottom: 30px;
-}
-
-.button-group {
+.button-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-  min-height: 100px;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+  position: relative;
+  height: 100px; /* Space for moving button */
+}
+
+#yesBtn,
+#noBtn {
+  padding: 15px 45px;
+  font-size: 24px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 #yesBtn {
   background: #4caf50;
   color: white;
-  padding: 15px 45px;
-  font-size: 24px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.2s;
 }
 
 #noBtn {
-  background: #ff4d4d;
+  background: #f44336;
   color: white;
-  padding: 15px 45px;
-  font-size: 24px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  position: absolute;
+  position: relative; /* Starts relative to the container */
+  z-index: 10;
 }
 
 #yayText {
   display: none;
-  color: var(--dark-pink);
   font-family: "Dancing Script", cursive;
-  font-size: 40px;
+  font-size: 45px;
+  color: var(--dark-pink);
   margin-top: 20px;
-  animation: bounce 0.5s infinite alternate;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounce {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
